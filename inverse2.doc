@@ -1,0 +1,121 @@
+                   INVERSE  -  Version 2.0
+
+         Program documentation for PC on INVERSE.DOC 
+
+PURPOSE: To run a geodetic inverse to obtain the forward, backward 
+         azimuths & the ellipsoidal distance when given the geodetic
+         coordinates of the FROM & TO stations.
+
+         Latitudes : North/South Hemisphere (+/- 0 to  89 59 59.9999)    
+         Longitude : East/West Hemisphere   (+/- 0 to 359 59 59.9999)
+
+
+AUTHOR:  STEVE FRAKES, NATIONAL GEODTIC SURVEY  
+
+DATE:    1985 SEPTEMBER 
+         2002 AUGUST 
+
+INPUT: - Ellipsoid options :
+
+         - GRS80 / WGS84
+         - Clarke 1866
+         - Any other ellipsoid
+
+       - Geodetic coordinates :            First Station (FROM station)
+       - Geodetic coordinates :            Second Station (TO station)
+
+
+OUTPUT:
+       - Forward Azimuth (from North) to : Second Station (TO station)
+       - Back azimuth (from North) to :    First Station (FROM station)
+       - Ellipsoidal distance (in meters)                             
+
+
+EXECUTING INVERSE:
+
+       Hardware requirements:
+
+       - Can be run from hard disk or floppy disk.
+       - The 8087 math co-processor.
+       - 120K of main memory
+       - A printer with 80 character/line if hard copy is desired.
+         
+         THE CODE WAS WRITTEN IN FORTRAN77 AND WAS COMPILED
+         WITH THE IBM PROFESSIONAL FORTRAN COMPILER. TO RUN
+         THE EXECUTABLE PROGRAM, YOU MUST HAVE AN IBM PC OR
+         XT OR AT WITH THE MATH COPROCESSOR. IF YOU HAVE
+         ANOTHER KIND OF PC, THE SOURCE CODE MUST BE RECOMPILED.
+
+       To execute: 
+
+       Type in - INVERSE
+
+       Respond appropriately to prompts.
+
+       A sample copy of a run is listed below:
+
+
+
+
+
+
+
+Program Inverse  -  Version 2.0    
+
+Ellipsoid options :
+
+1. GRS80 / WSG84  (NAD83)
+2. Clarke 1866    (NAD27)
+3. Any other ellipsoid
+
+Enter choice : 2
+
+  Enter First Station
+                             
+hDD MM SS.sssss  Latitude :      (h default = N )
+ 35 00 16.99130
+
+hDDD MM SS.sssss Longitude :     (h default = W )
+ 129 00 34.89797
+
+  Enter Second Station
+                             
+hDD MM SS.sssss  Latitude :      (h default = N )
+ 35            
+
+hDDD MM SS.sssss Longitude :     (h default = W )
+ 129                
+
+
+First  Station :      
+---------------- 
+  LAT =  35 00 16.99130 North
+  LON = 129 00 34.89797 West 
+
+Second Station :      
+---------------- 
+  LAT =  35 00 00.00000 North
+  LON = 129 00 00.00000 West 
+
+Forward azimuth        FAZ = 120 36 34.3299 From North
+Back azimuth           BAZ = 300 36 54.3477 From North
+Ellipsoidal distance     S =      1028.2340 m
+
+Do you want to save this output into a file (y/n)?  y
+
+   Enter the output filename :   any_file_name
+
+   Enter the First Station name : FROM
+
+   Enter the Second Station name : TO
+
+
+1. Another inverse, different ellipsoid.
+2. Same ellipsoid, two new stations. 
+3. Same ellipsoid, same First Station.
+4. Done
+
+Enter choice : 4
+
+
+

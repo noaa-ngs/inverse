@@ -1,0 +1,116 @@
+To work an INVERSE or FORWARD from a file of input points.  
+Geographic Position Coordinates must be NAD83 (not NAD27).  
+Only three format are allowed [explain].
+
+Specify the input file (on your computer) [         ] Browse ...
+
+------------------------------------------------------------------------
+
+Fixed Format Type 1 (for INVERSE/FORWARD) :
+
+This is an ASCII format where each record can have four fields. 
+The latitude and longitude are both required while the 
+station serial number and station name are optional.
+
+field  columns 
+  1     03-06  SSN, the Station Serial Number, 
+  2     08-37  STATION NAME left justified to column 8, 
+  3     41-56  LAT, the Latitude, and
+  4     57-72  LON, the Longitude.
+
+Latitude & Longitude fields can either Nominal, Packed or Decimal.
+
+Nominal - (hDDD MM SS.sssss) hemisphere-degrees, minutes & seconds,
+Packed -- (hDDDMMSS.sssss)   hemisphere-degrees-minutes-seconds, and
+Decimal - (hDDD.dddddddddd)  hemisphere-degrees.
+
+EXAMPLES:
+The following records are examples of acceptable input:
+
+//       1         2         3         4         5         6         7 
+//3456789012345678901234567890123456789012345678901234567890123456789012
+//<--> <---STATION NAME------------->   <---LAT--------><---LON-------->
+//(3-6)   (08-37)                          (41-56)         (57-72)
+C/               *** A COMMENT CARD *** 
+BB0266 CIBOLO                           N293536.56960   W1042037.50657
+BB0049 DIKE                             N293152.45801   W1042111.74212
+BB0063 K 1095                           +29 31 45.19079 -104 17 51.35666
+   281 PRESIDO MUN STANDPIPE            29.56761735     104.3605858111 
+BB0019 PRESIDO S BASE                   29,39,53.01129  104,21,40.38825
+   263 TORNEROS                         29 32 8.32205   W104.210885025
+    57 TXIBWC A                         29.5217940833   w104,20,13.02688
+
+------------------------------------------------------------------------
+
+Fixed Format Type 2 (for INVERSE/FORWARD) :
+
+This is an ASCII format where each record can have four fields. 
+The latitude and longitude are both required while
+the station serial number and station name are optional.
+
+field  columns 
+  1     01-16  LAT, the Latitude,
+  2     17-32  LON, the Longitude, 
+  3     36-39  SSN, the Station Serial Number, and
+  4     41-80  STATION NAME left justified to column 41.
+
+Latitude & Longitude fields can either Nominal, Packed or Decimal.
+
+Nominal - (hDDD MM SS.sssss) hemisphere-degrees, minutes & seconds,
+Packed -- (hDDDMMSS.sssss)   hemisphere-degrees-minutes-seconds, and
+Decimal - (hDDD.dddddddddd)  hemisphere-degrees.
+
+EXAMPLES:
+The following records are examples of acceptable input:
+
+//       1         2         3         4         5         6         7 
+//3456789012345678901234567890123456789012345678901234567890123456789012
+<---LAT--------><---LON-------->   <--> <--- STATION NAME ------------->
+// (01-16)         (17-32)       (36-39)    (41-80)
+//          *** A COMMENT CARD ***   
+N293536.56960   W1042037.50657   BB0266 CIBOLO    // more comments      
+N293152.45801   W1042111.74212   BB0049 DIKE      // can be added, if   
++29 31 45.19079 -104 17 51.35666 BB0063 K 1095    // needed, out here  
+29.56761735     104.3605858111      281 PRESIDO MUN STANDPIPE           
+29,39,53.01129  104,21,40.38825  BB0019 PRESIDO S BASE                  
+29 32 8.32205   W104.210885025      263 TORNEROS                        
+29.5217940833   w104,20,13.02688     57 TXIBWC A        // at the end.  
+
+------------------------------------------------------------------------
+
+NGS Blue Book Format (With *80* records) :
+
+This is an ASCII format file where NGS Blue Book *80* records are used. 
+The fields, latitude, longitude, station serial number and station name,
+are required and the rest of the record is not used.
+
+field  columns 
+  1     01-06  Sequence Number,
+  2     07-10  *80*, Data Code,
+  3     11-14  SSN, Station Serial Number, 
+  4     15-44  STATION NAME left justified to column 15,
+  5     45-55  LAT (DDMMSSsssss) Latitude,
+  6     56     Hemisphere (N/S) for Latitude,
+  7     57-68  LON (DDDMMSSsssss) Longitude,
+  8     69     Hemisphere (E/W) for Longitude,
+  9     70-75  OHT (MMMMmm) Orthometric Height in meters,
+ 10     76     OHT Code,
+ 11     77-78  SC, State Code,
+ 12     79-80  OT, Station Order & Type.
+
+EXAMPLES:
+The following records are examples of acceptable input:
+
+//       1         2         3         4         5         6         7         8
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//    *80*<--><---STATION NAME-------------><---LAT--->h<---LON---->h
+//      (11-14)  (15-44)                       (45-55,56)   (57-68,69)
+/*                   *** A COMMENT CARD ***
+003440*80*0266CIBOLO                        29353656960N104203750657W       TX11
+003460*80*0049DIKE                          29315245801N104211174212W       TX24
+003480*80*0063K 1095                        29314519079N104175135666W       TX24
+003500*80*0281PRESIDO MUN STANDPIPE         29340342246N104213810892W       TX31
+003520*80*0019PRESIDO S BASE                29395301129N104214038825W       TXBA
+003540*80*0263TORNEROS                      29320832205N104123918609W       TX11
+003560*80*0057TXIBWC A                      29311845870N104201302688W       TX24
+
